@@ -298,18 +298,27 @@ return {
 
         -- configure c/c++ server
         lspconfig["clangd"].setup({
-            capabilities = capabilities,
-            on_attach = on_attach,
-            settings = {
-                clangd = {
-                    compileCommandsDir = "build",
-                    root_dir = lspconfig.util.root_pattern("compile_commands.json", "compile_flags.txt", ".git")
-                        or lspconfig.util.path.dirname,
-                    filetypes = { "c", "h", "hpp", "cpp", "cpi", "objc", "objcpp" },
-                    single_file_support = true,
-                },
-            },
-        })
+              capabilities = capabilities,
+              on_attach = on_attach,
+              settings = {
+                  clangd = {
+                        compileCommandsDir = "build",
+                      root_dir = [[
+        root_pattern(
+          '.clangd',
+          '.clang-tidy',
+          '.clang-format',
+          'compile_commands.json',
+          'compile_flags.txt',
+          'configure.ac',
+          '.git'
+        ) .. '/build'
+      ]],
+  --                    filetypes = { "c", "h", "hpp", "cpp", "cpi", "objc", "objcpp" },
+  --                    single_file_support = true,
+                  },
+              },
+          })
         require("clangd_extensions").setup({
             server = { capabilities = capabilities, on_attach = on_attach },
             extensions = {

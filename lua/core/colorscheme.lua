@@ -1,1 +1,1 @@
-pcall(vim.cmd.colorscheme, "catppuccin-mocha")
+pcall(vim.cmd.colorscheme, "catppuccin")

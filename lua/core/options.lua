@@ -9,7 +9,7 @@ vim.cmd("set nofoldenable")
 vim.cmd("set showcmd")
 
 -- disable mouse
-opt.mouse = ""
+-- opt.mouse = ""
 
 -- timeout
 opt.timeoutlen = 500
